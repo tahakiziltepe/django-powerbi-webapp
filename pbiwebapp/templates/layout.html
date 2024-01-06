@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <title>Application</title>
+    <link rel="stylesheet" href="{% static 'pbiwebapp/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'pbiwebapp/css/bootstrap.rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'pbiwebapp/css/bootstrap-grid.css' %}">
+    <link rel="stylesheet" href="{% static 'pbiwebapp/css/bootstrap-grid.rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'pbiwebapp/css/bootstrap-reboot.css' %}">
+    <link rel="stylesheet" href="{% static 'pbiwebapp/css/bootstrap-reboot.rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'pbiwebapp/css/bootstrap-utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'pbiwebapp/css/bootstrap-utilities.rtl.css' %}">
+
+</head>
+<body>
+
+    {% include 'partials/_navbar.html' %}
+
+    <main>
+        <div class = "container mt-4">
+            {% block content%}
+            {% endblock%}
+        </div>
+    </main>
+
+  {% include 'partials/_footer.html' %}
+
+
+<script src = "{% static 'pbiwebapp/js/bootstrap.bundle.js'%}" ></script>
+<script src = "{% static 'pbiwebapp/js/bootstrap.esm.js'%}" ></script>
+<script src = "{% static 'pbiwebapp/js/bootstrap.js'%}" ></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<header>
+    <div class="navbar navbar-expand-sm navbar-light bg-light">
+
+        <div class="container">
+           <a class="navbar-brand" href="{% url 'pbiwebapp:index' %}">
+              <img src="https://static.cdnlogo.com/logos/c/18/ChatGPT_350x350.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+              iApp
+           </a>
+            <ul class = "navbar-nav ml-auto">
+               <li>
+                   <a href="{% url 'pbiwebapp:index' %}" class = "nav-link"> Home </a>
+               </li>
+                <li>
+                   <a href="{% url 'pbiwebapp:workspaces' %}" class = "nav-link"> Workspaces </a>
+               </li>
+               <li>
+                  <a href="{% url 'pbiwebapp:datasets' %}" class = "nav-link"> Datasets </a>
+              </li>
+                <li>
+                   <a href="{% url 'admin:index' %}" class = "nav-link"> Admin </a>
+               </li>
+           </ul>
+        </div>
+    </div>
+</header>
