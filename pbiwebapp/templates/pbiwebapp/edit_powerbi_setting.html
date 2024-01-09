@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+    <div class="alert alert-success mt-3" role="alert" id="alertDiv">
+        {{ message }}
+    </div>
+    {% endif %}
+{% endfor %}
+
+{% if pbisettings %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>We are able to provide a place only for one account.</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card" style="width: 75%;">
+            <div class="card-header">
+                Power BI Settings
+            </div>
+                <div class="card-body">
+                <h6 class="card-title">Username: {{ pbisettings.username }}</h6>
+                <p class="card-text">App ID: {{ pbisettings.app_id|slice:"0:10" }}...</p>
+                <p class="card-text">Tenant ID: {{ pbisettings.tenant_id|slice:"0:10" }}...</p>
+                <a href="{% url 'pbiwebapp:delete_pbisetting_from_db' v_id=pbisettings.id %}">
+                    <button type="button" class="btn btn-outline-danger"> Delete
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                        </svg>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="width: 75%;">
+            <div class="card-header">
+                Last Refresh Time
+            </div>
+                <div class="card-body">
+                    <p class="card-text">Capacity: {%if capacity_last_refresh %} {{ capacity_last_refresh.insertedDate | naturaltime}} {% else %} Unknown {% endif %}
+                        <a class="btn btn-primary" href="{% url 'pbiwebapp:update_capacities' %}" role="button" style="float: right; font-size: 15px;">
+                            Update
+                        </a>
+                    </p>
+                    <p class="card-text">Workspace: {%if workspace_last_refresh %} {{ workspace_last_refresh.insertedDate | naturaltime}} {% else %} Unknown {% endif %}
+                        <a class="btn btn-primary" href="{% url 'pbiwebapp:update_workspaces' %}" role="button" style="float: right; font-size: 15px;">
+                            Update
+                        </a>
+                    </p>
+                    <p class="card-text">Dataset: {%if dataset_last_refresh %} {{ dataset_last_refresh.insertedDate | naturaltime}} {% else %} Unknown {% endif %}
+                        <a class="btn btn-primary" href="{% url 'pbiwebapp:update_datasets' %}" role="button" style="float: right; font-size: 15px;">
+                            Update
+                        </a>
+                    </p>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% elif form %}
+<div class="container">
+    <div class="row">
+      <div class="col"></div> <!-- Left Column -->
+      <div class="col-6">
+        <form action="{% url 'pbiwebapp:edit_powerbi_setting' %}" method="post">
+            {% csrf_token %}
+            {% crispy form %}
+        </form>
+      </div>
+      <div class="col"></div> <!-- Right Column -->
+    </div>
+  </div>
+    
+{% else %}
+
+
+
+
+{% endif %}
+
+
+{% endblock%}

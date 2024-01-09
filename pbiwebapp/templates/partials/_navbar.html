@@ -10,12 +10,19 @@
                <li>
                    <a href="{% url 'pbiwebapp:index' %}" class = "nav-link"> Home </a>
                </li>
+               <li>
+                  <a href="{% url 'pbiwebapp:capacities' %}" class = "nav-link"> Capacities </a>
+              </li>
                 <li>
                    <a href="{% url 'pbiwebapp:workspaces' %}" class = "nav-link"> Workspaces </a>
                </li>
                <li>
                   <a href="{% url 'pbiwebapp:datasets' %}" class = "nav-link"> Datasets </a>
-              </li>
+               </li>
+               
+               <li>
+                <a href="{% url 'pbiwebapp:edit_powerbi_setting' %}" class = "nav-link"> PBI Setting </a>
+                </li>
                 <li>
                    <a href="{% url 'admin:index' %}" class = "nav-link"> Admin </a>
                </li>

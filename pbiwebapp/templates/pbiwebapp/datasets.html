@@ -3,14 +3,32 @@
 
 {% block content %}
 
+
+<div class="nav text-center">
+    <ul class="pagination">
+        
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo;&laquo;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+        {% endif %}
+
+        
+            <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }} </a></li>
+
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&raquo;&raquo;</a></li>
+        {% endif %}
+
+    </ul>
+</div>
     <div class="card">
-      <h5 class="card-header">Datasets
-            <a class="btn btn-success" href="{% url 'pbiwebapp:update_datasets' %}" role="button" style="float: right; font-size: 15px;">Update</a>
-      </h5>
+      <h5 class="card-header">Datasets</h5>
         <div class="card-body">
              <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th scope="col">Capacity</th>
                         <th scope="col">Workspace</th>
                         <th scope="col">Dataset ID</th>
                         <th scope="col">Name</th>
@@ -22,6 +40,7 @@
                     {% if datasets %}
                         {% for d in datasets %}
                             <tr>
+                                <td>{{ d.workspaceId.capacityId.capacityName }}</td>
                                 <td>{{ d.workspaceId.workspaceName }}</td>
                                 <td>{{ d.datasetId }}</td>
                                 <td>{{ d.datasetName }}</td>
@@ -48,6 +67,24 @@
         </div>
     </div>
 
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo;&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+            {% endif %}
+
+            
+                <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }} </a></li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&raquo;&raquo;</a></li>
+            {% endif %}
+    
+        </ul>
+    </nav>
 
 
 
