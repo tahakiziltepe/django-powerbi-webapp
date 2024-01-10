@@ -33,7 +33,9 @@ class Workspace(models.Model):
 
     def __str__(self):
         return self.workspaceId
-
+    
+    def get_link(self):
+        return f"https://app.powerbi.com/groups/{self.workspaceId}/list?experience=power-bi"
 
 class Dataset(models.Model):
     workspaceId = models.ForeignKey(Workspace, on_delete=models.CASCADE)
@@ -43,4 +45,7 @@ class Dataset(models.Model):
 
     def __str__(self):
         return self.datasetId
+    
+    def get_link(self):
+        return f"https://app.powerbi.com/groups/{self.workspaceId}/datasets/{self.datasetId}/details?experience=power-bi"
     

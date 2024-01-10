@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib import messages
@@ -67,7 +67,7 @@ def update_capacities(request):
     print(f"2 -- Views -- ACCESS TOKEN ---{access_token}")
     func_update_capacities(access_token)
     print(f"3 -- Views -- RUN FUNCTION ---")
-    return redirect('pbiwebapp:capacities')
+    return redirect('pbiwebapp:edit_powerbi_setting')
 
 
 @staff_member_required
@@ -88,7 +88,7 @@ def update_workspaces(request):
     print(f"2 -- Views -- ACCESS TOKEN ---{access_token}")
     func_update_workspaces(access_token)
     print(f"3 -- Views -- RUN FUNCTION ---")
-    return redirect('pbiwebapp:workspaces')
+    return redirect('pbiwebapp:edit_powerbi_setting')
 
 
 @staff_member_required
@@ -109,7 +109,7 @@ def update_datasets(request):
     print(f"2 -- Views -- ACCESS TOKEN ---{access_token}")
     func_update_datasets(access_token)
     print(f"3 -- Views -- RUN FUNCTION ---")
-    return redirect('pbiwebapp:datasets')
+    return redirect('pbiwebapp:edit_powerbi_setting')
 
 
 
@@ -147,7 +147,23 @@ def edit_powerbi_setting(request):
 
 @staff_member_required
 def delete_pbisetting_from_db(request,v_id):
-    c = PowerBI_Setting.objects.filter(id=v_id)
-    c.delete()
+    obj = PowerBI_Setting.objects.filter(id=v_id)
+    obj.delete()
     messages.success(request,"Deleted.")
     return redirect('pbiwebapp:edit_powerbi_setting')
+
+
+def Detail_Capacity(request, v_id):
+    capacity = get_object_or_404(Capacity, pk = v_id )
+    return render(request, 'pbiwebapp/detail_capacity.html', {'capacity': capacity})
+
+    
+def Detail_Workspace(request, v_id):
+    workspace = get_object_or_404(Workspace, pk = v_id )
+    return render(request, 'pbiwebapp/detail_workspace.html', {'workspace': workspace})
+
+
+def Detail_Dataset(request,v_id):
+    dataset = get_object_or_404(Dataset, pk = v_id )
+    return render(request, 'pbiwebapp/detail_dataset.html', {'dataset': dataset})
+

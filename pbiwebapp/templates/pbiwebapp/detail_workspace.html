@@ -3,13 +3,13 @@
 {% load humanize %}
 
 {% block content %}
-{% if dataset %}
+{% if workspace %}
 <div class="card" style="width: 50%;">
     <div class="card-body">
-      <h5 class="card-title">{{dataset.datasetName}}</h5>
-      <h6 class="card-subtitle mb-2 text-body-secondary">Data was received {{dataset.insertedDate|naturaltime}}</h6>
+      <h5 class="card-title">{{workspace.workspaceName}}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Data was received {{workspace.insertedDate|naturaltime}}</h6>
       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="{{ dataset.get_link }}" class="card-link">Go to dataset</a>
+      <a href="{{ workspace.get_link }}" class="card-link">Go to workspace</a>
     </div>
   </div>
 {% else %}

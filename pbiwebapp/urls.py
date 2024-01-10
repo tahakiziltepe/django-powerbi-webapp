@@ -7,9 +7,16 @@ urlpatterns = [
     path('', views.IndexView, name="index"),
     path('edit_powerbi_setting/', views.edit_powerbi_setting, name="edit_powerbi_setting"),
 
+    # Pivot pages
     path('capacities/', views.CapacityView.as_view(), name="capacities"),
     path('workpaces/', views.WorkspaceView.as_view(), name="workspaces"),
     path('datasets/', views.DatasetView.as_view(), name="datasets"),
+
+    # Detail pages
+    path('detail/capacity/<int:v_id>', views.Detail_Capacity, name="detail_capacity"),
+    path('detail/workspace/<int:v_id>', views.Detail_Workspace, name="detail_workspace"),
+    path('detail/dataset/<int:v_id>', views.Detail_Dataset, name="detail_dataset"),
+
 
     path('update_capacities/', views.update_capacities, name="update_capacities"),
     path('update_workspaces/', views.update_workspaces, name="update_workspaces"),

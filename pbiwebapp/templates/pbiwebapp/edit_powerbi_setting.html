@@ -27,8 +27,8 @@
             </div>
                 <div class="card-body">
                 <h6 class="card-title">Username: {{ pbisettings.username }}</h6>
-                <p class="card-text">App ID: {{ pbisettings.app_id|slice:"0:10" }}...</p>
-                <p class="card-text">Tenant ID: {{ pbisettings.tenant_id|slice:"0:10" }}...</p>
+                <p class="card-text">App ID: {{ pbisettings.app_id|slice:"0:8" }}*****{{ pbisettings.app_id|slice:"31:100" }}</p>
+                <p class="card-text">Tenant ID: {{ pbisettings.tenant_id|slice:"0:8" }}*****{{ pbisettings.tenant_id|slice:"31:100" }}</p>
                 <a href="{% url 'pbiwebapp:delete_pbisetting_from_db' v_id=pbisettings.id %}">
                     <button type="button" class="btn btn-outline-danger"> Delete
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
