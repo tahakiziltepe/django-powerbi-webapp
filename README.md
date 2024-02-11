@@ -16,3 +16,21 @@ To use:
 • Click view site and click update. For now, you have to update in order (Capacity -> Workspace -> Dataset) because they are used hierarchy.
 
 New features will be added.
+
+## Images
+
+![1homepage_empty](./readme_images/1homepage_empty.JPG)
+
+![1homepage_empty](./readme_images/2homepage_with_full.jpg)
+
+You have to log in with admin account to see PBI Setting page. You may save your necessary settings to use Power BI Rest API.
+![1homepage_empty](./readme_images/3pbi_setting_without.JPG)
+
+If you have already saved necessary settings, you can update data here. (You can not refresh a dataset from here. You can only get fresh data for your capacities, workspaces and datasets from Power BI.)
+![1homepage_empty](./readme_images/4pbi_setting_with.JPG)
+
+List pages exist for capacities, workspaces and datasets. 
+![1homepage_empty](./readme_images/5datasets_page.jpg)
+
+Detail pages exist for capacities, workspaces and datasets. You can see name of the relevant asset, when is the last update date and find direct link to open it on Power BI Web.
+![1homepage_empty](./readme_images/6dataset_detail.JPG)
